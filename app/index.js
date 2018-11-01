@@ -1,51 +1,22 @@
 const clova = require('@line/clova-cek-sdk-nodejs');
 const express = require('express');
 const bodyParser = require('body-parser');
+const action = require('../action')
 const APPLICATION_ID = process.env.APPLICATION_ID;
 
 const app = new express();
 
 const launchHandler = async responseHelper => {
-  responseHelper.setSimpleSpeech(
-    clova.SpeechBuilder.createSpeechText('ノックノック')
-  );
-  responseHelper.setSessionAttributes({})
+  action.launchAction(responseHelper)
 };
 
 const intentHandler = async responseHelper => {
-  const intent = responseHelper.getIntentName();
-  const sessionId = responseHelper.getSessionId();
-
-  switch (intent) {
-    case 'WhoIntent':
-      responseHelper.setSimpleSpeech(
-        clova.SpeechBuilder.createSpeechText('バービー')
-      );
-      responseHelper.setSessionAttributes({
-        'said': true
-      });
-      break;
-    case 'WhoReplyIntent':
-      const session = responseHelper.getSessionAttributes()
-      if (session['said']) {
-        responseHelper.setSimpleSpeech(
-          clova.SpeechBuilder.createSpeechText('バービーキュー！')
-        );
-      } else {
-        responseHelper.setSimpleSpeech(
-          clova.SpeechBuilder.createSpeechText('ううん')
-        );
-      }
-      break;
-    default:
-      responseHelper.setSimpleSpeech(
-        clova.SpeechBuilder.createSpeechText('なんなん')
-      );
-      break;
-  }
+  action.intentAction(responseHelper)
 };
 
-const sessionEndedHandler = async responseHelper => {};
+const sessionEndedHandler = async responseHelper => {
+  action.sessionEndedAction(responseHelper)
+};
 
 const clovaHandler = clova.Client
   .configureSkill()
