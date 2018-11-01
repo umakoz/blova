@@ -17,7 +17,7 @@ const intentHandler = async responseHelper => {
   const sessionId = responseHelper.getSessionId();
 
   switch (intent) {
-    case 'Clova.WhoIntent':
+    case 'WhoIntent':
       responseHelper.setSimpleSpeech(
         clova.SpeechBuilder.createSpeechText('バービー')
       );
@@ -25,7 +25,7 @@ const intentHandler = async responseHelper => {
         'said': true
       });
       break;
-    case 'Clova.WhoReplyIntent':
+    case 'WhoReplyIntent':
       const session = responseHelper.getSessionAttributes()
       if (session['said']) {
         responseHelper.setSimpleSpeech(
