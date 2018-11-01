@@ -1,0 +1,24 @@
+{
+  "name": "blova",
+  "version": "1.0.0",
+  "description": "Blova makes clova and blockly friends.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/umakoz/blova.git"
+  },
+  "author": "umakoz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/umakoz/blova/issues"
+  },
+  "homepage": "https://github.com/umakoz/blova#readme",
+  "dependencies": {
+    "@line/clova-cek-sdk-nodejs": "^1.1.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
