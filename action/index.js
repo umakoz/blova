@@ -39,11 +39,12 @@ const intentAction = responseHelper => {
       break;
   }
 };
+
 const sessionEndedAction = responseHelper => {
 };
 
-exports = {
-  launchAction,
-  intentAction,
-  sessionEndedAction
+module.exports = {
+  launchAction: launchAction,
+  intentAction: intentAction,
+  sessionEndedAction: sessionEndedAction
 }
