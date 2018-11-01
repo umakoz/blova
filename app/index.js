@@ -33,9 +33,9 @@ app.post('/clova', clovaMiddleware, clovaHandler);
 // Or you can simply use `bodyParser.json()` to accept any request without checking, e.g.,
 // `app.post('/clova', bodyParser.json(), clovaHandler);`
 
+app.use('/', express.static('ui'));
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on ${port}`);
 });
-
-action.sessionEndedAction({})
