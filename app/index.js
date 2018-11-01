@@ -35,7 +35,6 @@ const intentHandler = async responseHelper => {
         responseHelper.setSimpleSpeech(
           clova.SpeechBuilder.createSpeechText('ううん')
         );
-        launchHandler(responseHelper);
       }
       break;
     default:
