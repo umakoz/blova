@@ -7,8 +7,9 @@ const app = new express();
 
 const launchHandler = async responseHelper => {
   responseHelper.setSimpleSpeech(
-    clova.SpeechBuilder.createSpeechText('おはよう')
+    clova.SpeechBuilder.createSpeechText('ノックノック')
   );
+  responseHelper.setSessionAttributes({})
 };
 
 const intentHandler = async responseHelper => {
@@ -16,15 +17,26 @@ const intentHandler = async responseHelper => {
   const sessionId = responseHelper.getSessionId();
 
   switch (intent) {
-    case 'Clova.YesIntent':
+    case 'Clova.WhoIntent':
       responseHelper.setSimpleSpeech(
-        clova.SpeechBuilder.createSpeechText('はいはい')
+        clova.SpeechBuilder.createSpeechText('バービー')
       );
+      responseHelper.setSessionAttributes({
+        'said': true
+      });
       break;
-    case 'Clova.NoIntent':
-      responseHelper.setSimpleSpeech(
-        clova.SpeechBuilder.createSpeechText('いえいえ')
-      );
+    case 'Clova.WhoReplyIntent':
+      const session = responseHelper.getSessionAttributes()
+      if (session['said']) {
+        responseHelper.setSimpleSpeech(
+          clova.SpeechBuilder.createSpeechText('バービーキュー！')
+        );
+      } else {
+        responseHelper.setSimpleSpeech(
+          clova.SpeechBuilder.createSpeechText('ううん')
+        );
+        launchHandler(responseHelper);
+      }
       break;
     default:
       responseHelper.setSimpleSpeech(
