@@ -11,12 +11,12 @@ aws.config.update({
 	region: S3_BUCKET_REGION
 });
 
-const save = async (fileName, xml) => {
+const save = async (fileName, data) => {
   let s3 = new aws.S3();
   let params = {
     Bucket: S3_BUCKET,
     Key: fileName,
-    Body: xml
+    Body: data
   };
   try {
     await s3.putObject(params).promise();

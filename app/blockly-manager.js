@@ -1,10 +1,10 @@
 var Blockly = require('node-blockly/js');
 
-const xmlManager = require('./xml-manager')
+const s3Manager = require('./s3-manager')
 
 const generate = async fileName => {
   try {
-    let xmlText = await xmlManager.load(fileName);
+    let xmlText = await s3Manager.load(fileName);
     let xml = Blockly.Xml.textToDom(xmlText);
     // Create a headless workspace.
     let workspace = new Blockly.Workspace();
