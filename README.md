@@ -14,3 +14,10 @@ $ heroku config:set S3_BUCKET="xxx"
 $ heroku config:set S3_BUCKET_REGION="xxx"
 $ git push heroku master
 ```
+
+## If you modify blockly, you should do...
+
+```
+$ gulp blockly_compress
+$ gulp build
+```

@@ -1,6 +1,6 @@
-var Blockly = require('node-blockly/js');
+var Blockly = require('./node-blockly/js');
 
-const s3Manager = require('./s3-manager')
+const s3Manager = require('./s3-manager');
 
 const generate = async fileName => {
   try {
