@@ -20,6 +20,10 @@
     "@line/clova-cek-sdk-nodejs": "^1.1.1",
     "aws-sdk": "^2.347.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "node-blockly": "^1.0.35"
+  },
+  "engines": {
+    "node": "8.x"
   }
 }
