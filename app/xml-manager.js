@@ -11,22 +11,38 @@ aws.config.update({
 	region: S3_BUCKET_REGION
 });
 
-const save = (fileName, xml) => {
-  const s3 = new aws.S3();
-  const s3Params = {
+const save = async (fileName, xml) => {
+  let s3 = new aws.S3();
+  let params = {
     Bucket: S3_BUCKET,
     Key: fileName,
     Body: xml
   };
-  s3.putObject(s3Params, (err, data) => {
-    if (err) {
-      console.log(err);
-      return false;
-    }
+  try {
+    await s3.putObject(params).promise();
     return true;
-  });
+  } catch(err) {
+    console.log(err);
+    return false;
+  }
+}
+
+const load = async (fileName) => {
+  let s3 = new aws.S3();
+  let params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+  };
+  try {
+    let data = await s3.getObject(params).promise();
+    return data.Body.toString();
+  } catch(err) {
+    console.log(err);
+    return err;
+  }
 }
 
 module.exports = {
-  save: save
+  save: save,
+  load: load
 }
