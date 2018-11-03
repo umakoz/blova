@@ -36,6 +36,6 @@ Blockly.JavaScript['clova_set_session_attribute'] = function(block) {
 
 Blockly.JavaScript['clova_get_session_attribute'] = function(block) {
   var text_session_attribute_key = Blockly.JavaScript.quote_(block.getFieldValue('session_attribute_key'));
-  var code = 'sessionAttribute(' +  text_session_attribute_key + ');\n';
+  var code = 'sessionAttribute(' +  text_session_attribute_key + ')';
   return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 };
