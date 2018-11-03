@@ -3,10 +3,10 @@ Blockly.JavaScript['clova'] = function(block) {
   var statements_intents = Blockly.JavaScript.statementToCode(block, 'intents');
   var statements_end = Blockly.JavaScript.statementToCode(block, 'end');
   var code = '';
-  code += 'clova(\n';
-  code += '{\n' + statements_launch + '},\n';
-  code += '{\n' + statements_intents + '},\n';
-  code += '{\n' + statements_end + '}\n';
+  code += 'initClovaAction(\n';
+  code += 'function() {\n' + statements_launch + '},\n';
+  code += 'function() {\n' + statements_intents + '},\n';
+  code += 'function() {\n' + statements_end + '}\n';
   code += ');\n';
   return code;
 };
@@ -15,7 +15,7 @@ Blockly.JavaScript['clova_intent'] = function(block) {
   var text_intent_name = Blockly.JavaScript.quote_(block.getFieldValue('intent_name'));
   var statements_intents = Blockly.JavaScript.statementToCode(block, 'intents');
   var code = '';
-  code += 'intent(' + text_intent_name + ', {\n';
+  code += 'addIntent(' + text_intent_name + ', function() {\n';
   code += statements_intents;
   code += '});\n';
   return code;

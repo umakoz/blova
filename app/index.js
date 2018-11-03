@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const s3Manager = require('./s3-manager');
 const blocklyManager = require('./blockly-manager');
-const action = require('../action');
+const action = require('./action');
 
 const APPLICATION_ID = process.env.APPLICATION_ID;
 const XML_FILE_NAME = 'action.xml';
@@ -11,15 +11,15 @@ const XML_FILE_NAME = 'action.xml';
 const app = new express();
 
 const launchHandler = async responseHelper => {
-  action.launchAction(responseHelper)
+  await action.executeLaunch(responseHelper, XML_FILE_NAME);
 };
 
 const intentHandler = async responseHelper => {
-  action.intentAction(responseHelper)
+  await action.executeIntent(responseHelper, XML_FILE_NAME);
 };
 
 const sessionEndedHandler = async responseHelper => {
-  action.sessionEndedAction(responseHelper)
+  await action.executeEnd(responseHelper, XML_FILE_NAME);
 };
 
 const clovaHandler = clova.Client
@@ -55,9 +55,9 @@ app.get('/xml', async function (req, res) {
 });
 
 app.get('/generate', async function (req, res) {
-  let xml = await blocklyManager.generate(XML_FILE_NAME);
-  if (xml !== false) {
-    res.send(xml);
+  let code = await blocklyManager.generate(XML_FILE_NAME);
+  if (code !== false) {
+    res.send(code);
   } else {
     res.status(500).end();
   }
