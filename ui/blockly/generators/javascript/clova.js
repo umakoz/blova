@@ -41,6 +41,6 @@ Blockly.JavaScript['clova_get_session_attribute'] = function(block) {
 };
 
 Blockly.JavaScript['clova_end_session'] = function(block) {
-  var code = 'endSession();\n';
+  var code = 'endSession();';
   return code;
 };
