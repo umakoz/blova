@@ -42,6 +42,11 @@ const sessionAttribute = (key) => {
   return session[key];
 };
 
+const endSession = () => {
+  console.log('endSession');
+  responseHelper.endSession();
+};
+
 const executeLaunch = async (myResponseHelper, xmlFileName) => {
   await setup(myResponseHelper, xmlFileName);
   console.log('executeLaunch');
