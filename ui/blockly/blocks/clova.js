@@ -102,5 +102,13 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
 		"colour": 330,
 		"tooltip": "",
 		"helpUrl": ""
+	},
+	{
+		"type": "clova_end_session",
+		"message0": "end session",
+		"previousStatement": null,
+		"colour": 330,
+		"tooltip": "",
+		"helpUrl": ""
 	}
 ]);
